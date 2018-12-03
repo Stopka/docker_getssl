@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  getssl:
+    image: Stopka/getssl:prod
+    build: ./build/getssl
+    volumes:
+      - getssl-configs:/root/.getssl
+      - getssl-certs:/root/ssl
+      - getssl-acme:/root/acme-challenge
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - ACCOUNT_EMAIL=${GETSSL_EMAIL}
+      # comma separated SANs, space separated certs
+      - DOMAINS=${GETSSL_DOMAINS}
+      # space separated container names
+      - RELOAD_CONTAINERS=${GETSSL_CONTAINERS}
+volumes:
+  getssl-configs:
+  getssl-acme:
+  getssl-certs:
