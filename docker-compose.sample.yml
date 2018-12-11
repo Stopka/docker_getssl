@@ -1,8 +1,7 @@
 version: "3.3"
 services:
   getssl:
-    image: Stopka/getssl:prod
-    build: ./build/getssl
+    image: skorpils/getssl:latest
     volumes:
       - getssl-configs:/root/.getssl
       - getssl-certs:/root/ssl
